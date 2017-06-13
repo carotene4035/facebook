@@ -2,21 +2,42 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
+    :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
 
   mount_uploader :avatar, AvatarUploader
+
+  # 関係テーブルとの結びつき
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
+
+  # user同士の結びつき
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :followers, through: :reverse_relationships, source: :follower
+
+
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
+  end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.find_by(email: auth.info.email)
 
     unless user
       user = User.new(
-          name:     auth.extra.raw_info.name,
-          provider: auth.provider,
-          uid:      auth.uid,
-          email:    auth.info.email ||= "#{auth.uid}-#{auth.provider}@example.com",
-          image_url:   auth.info.image,
-          password: Devise.friendly_token[0, 20]
+        name:     auth.extra.raw_info.name,
+        provider: auth.provider,
+        uid:      auth.uid,
+        email:    auth.info.email ||= "#{auth.uid}-#{auth.provider}@example.com",
+        image_url:   auth.info.image,
+        password: Devise.friendly_token[0, 20]
       )
       user.skip_confirmation!
       user.save(validate: false)
@@ -29,12 +50,12 @@ class User < ActiveRecord::Base
 
     unless user
       user = User.new(
-          name:     auth.info.nickname,
-          image_url: auth.info.image,
-          provider: auth.provider,
-          uid:      auth.uid,
-          email:    auth.info.email ||= "#{auth.uid}-#{auth.provider}@example.com",
-          password: Devise.friendly_token[0, 20]
+        name:     auth.info.nickname,
+        image_url: auth.info.image,
+        provider: auth.provider,
+        uid:      auth.uid,
+        email:    auth.info.email ||= "#{auth.uid}-#{auth.provider}@example.com",
+        password: Devise.friendly_token[0, 20]
       )
       user.skip_confirmation!
       user.save
