@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  # topicとの結びつき
+  has_many :topics
+
   # 関係テーブルとの結びつき
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy

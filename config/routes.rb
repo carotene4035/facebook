@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :topics
   get 'relationships/create'
 
   get 'relationships/destroy'
