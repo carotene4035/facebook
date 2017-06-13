@@ -12,7 +12,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @topic.user_id %>
+  <%= @topic.user.name %>
 </p>
 
 <%= link_to 'Edit', edit_topic_path(@topic) %> |
