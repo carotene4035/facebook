@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-  resource :conversations do
-    resource :messages
-  end
-
-  resources :topics do
+ resources :topics do
     resources :comments
     post :confirm, on: :collection
   end
@@ -16,7 +12,11 @@ Rails.application.routes.draw do
 
   root 'top#index'
 
-  resources :users, only: [:index]
+  resources :users, only: [:index, :show]
+
+  resources :conversations do
+    resources :messages
+  end
 
   resources :relationships, only: [:create, :destroy]
 
