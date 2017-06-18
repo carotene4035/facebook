@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :topics
-  get 'relationships/create'
-
-  get 'relationships/destroy'
+  resources :topics do
+    resources :comments
+    post :confirm, on: :collection
+  end
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
