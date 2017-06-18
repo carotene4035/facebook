@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resource :conversations do
+    resource :messages
+  end
+
   resources :topics do
     resources :comments
     post :confirm, on: :collection
