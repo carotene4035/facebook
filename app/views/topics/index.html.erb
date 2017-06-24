@@ -1,17 +1,20 @@
-<div class="container">
-  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
-    <p><%= notice %></p>
-    <h1>ブログ一覧</h1>
-    <%= link_to "ブログを作成する", new_topic_path, class: 'btn btn-default' %>
-    <% @topics.each do |topic| %>
-      <div class="row">
-        <%= link_to topic_path(topic) do %>
-          <h4><strong><%= topic.title %></strong></h4>
-        <% end %>
-        <p><%= topic.content %></p>
-        <%= link_to "編集", edit_topic_path(topic.id), class: 'btn btn-default btn-sm btn-success' %>
-        <%= link_to "削除", topic_path(topic.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
-      </div>
-    <% end %>
+<div class="well">
+  <form class="form">
+    <h4>記事一覧</h4>
+    <div class="input-group text-center">
+      <%= link_to "ブログを作成する", new_topic_path, class: 'btn btn-default pull-right' %>
+    </div>
+  </form>
+</div>
+
+<% @topics.each do |topic| %>
+<div class="panel panel-default">
+  <div class="panel-heading"><a href="https://www.bootply.com/render/96266#" class="pull-right">View all</a> <h4><%= topic.title %></h4></div>
+  <div class="panel-body">
+    <p><%= topic.content %></p>
+    <%= link_to "編集", edit_topic_path(topic.id), class: 'btn btn-primary btn-sm btn-success' %>
+    <%= link_to "削除", topic_path(topic.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-info btn-sm btn' %>
   </div>
 </div>
+<% end %>
+

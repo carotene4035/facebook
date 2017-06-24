@@ -1,25 +1,31 @@
 <%= form_for(@topic) do |f| %>
+
   <% if @topic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
 
       <ul>
-      <% @topic.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @topic.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_field :content %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><a href="https://www.bootply.com/render/96266#" class="pull-right">View all</a> <h4><%= @topic.title %></h4></div>
+    <div class="panel-body">
+
+      <div class="field">
+        <%= f.label :title %><br>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :content %><br>
+        <%= f.text_field :content, class: "form-control" %>
+      </div>
+      <div class="actions">
+        <%= f.submit '送信', class: 'btn btn-sm btn-info' %>
+      </div>
+    </div>
+  <% end %>
