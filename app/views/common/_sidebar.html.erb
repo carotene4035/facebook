@@ -1,0 +1,32 @@
+
+  <ul class="nav">
+    <li><a href="https://www.bootply.com/render/96266#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+  </ul>
+
+  <ul class="nav hidden-xs" id="lg-menu">
+    <% if user_signed_in? %>
+      <li><%= link_to '記事一覧', topics_path %></li>
+      <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
+      <li><%= link_to 'メッセージ', conversations_path if user_signed_in? %></li>
+      <li><%= link_to 'マイページ', edit_user_registration_path %></li>
+      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to 'ログイン', new_user_session_path  %></li>
+      <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+    <% end %>
+
+  </ul>
+  <ul class="list-unstyled hidden-xs" id="sidebar-footer">
+    <li>
+      <a href="http://www.bootply.com/"><h3>Bootstrap</h3> <i class="glyphicon glyphicon-heart-empty"></i> Bootply</a>
+    </li>
+  </ul>
+
+  <!-- tiny only nav-->
+  <ul class="nav visible-xs" id="xs-menu">
+    <li><a href="https://www.bootply.com/render/96266#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
+    <li><a href="https://www.bootply.com/render/96266#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
+    <li><a href="https://www.bootply.com/render/96266#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
+    <li><a href="https://www.bootply.com/render/96266#" class="text-center"><i class="glyphicon glyphicon-refresh"></i></a></li>
+  </ul>
+

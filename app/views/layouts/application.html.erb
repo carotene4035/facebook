@@ -2,27 +2,146 @@
 <html>
   <head>
     <title>facebook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
+
   <body>
+    <div class="wrapper">
+      <div class="box">
+        <div class="row row-offcanvas row-offcanvas-left">
 
-    <p class="flash"><%= notice %><%= alert %></p>
-    <!-- ログイン・ログアウト操作 -->
-    <% if user_signed_in? %>
+          <!-- sidebar -->
+          <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
+            <%= render :partial => "common/sidebar" %>
+          </div>
 
-      <li><%= link_to '記事一覧', topics_path %></li>
-      <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
-      <li><%= link_to 'メッセージ', conversations_path if user_signed_in? %></li>
-      <li><%= link_to 'マイページ', edit_user_registration_path %></li>
-      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-    <% else %>
-      <li><%= link_to 'ログイン', new_user_session_path  %></li>
-      <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-    <% end %>
+          <!-- main right col -->
+          <div class="column col-sm-10 col-xs-11" id="main">
+            <%= render :partial => "common/topnav" %>
 
-    <%= yield %>
+            <div class="padding">
+              <div class="full col-sm-9">
 
-  </body>
-</html>
+                <!-- content -->
+                <div class="row">
+
+                  <!-- main col left -->
+                  <div class="col-sm-5">
+                    <%= render :partial => "common/profile" %>
+                  </div>
+
+                  <!-- main col right -->
+                  <div class="col-sm-7">
+                    <%= yield %>
+                  </div>
+
+                </div><!--/row-->
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <a href="https://www.bootply.com/render/96266#">Twitter</a> <small class="text-muted">|</small> <a href="https://www.bootply.com/render/96266#">Facebook</a> <small class="text-muted">|</small> <a href="https://www.bootply.com/render/96266#">Google+</a>
+                  </div>
+                </div>
+
+                <div class="row" id="footer">
+                  <div class="col-sm-6">
+
+                  </div>
+                  <div class="col-sm-6">
+                    <p>
+                    <a href="https://www.bootply.com/render/96266#" class="pull-right">©Copyright 2013</a>
+                    </p>
+                  </div>
+                </div>
+
+                <hr>
+
+                <h4 class="text-center">
+                  <a href="http://bootply.com/96266" target="ext">Download this Template @Bootply</a>
+                </h4>
+
+                <hr>
+
+
+              </div><!-- /col-9 -->
+            </div><!-- /padding -->
+          </div>
+          <!-- /main -->
+
+        </div>
+      </div>
+    </div>
+
+
+    <!--post modal-->
+    <div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            Update Status
+          </div>
+          <div class="modal-body">
+            <form class="form center-block">
+              <div class="form-group">
+                <textarea class="form-control input-lg" autofocus="" placeholder="What do you want to share?"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div>
+              <button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Post</button>
+              <ul class="pull-left list-inline"><li><a href="https://www.bootply.com/render/96266"><i class="glyphicon glyphicon-upload"></i></a></li><li><a href="https://www.bootply.com/render/96266"><i class="glyphicon glyphicon-camera"></i></a></li><li><a href="https://www.bootply.com/render/96266"><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script async="" src="./Bootply/analytics.js"></script><script type="text/javascript" src="./Bootply/jquery.min.js"></script>
+
+
+    <script type="text/javascript" src="./Bootply/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+    <!-- JavaScript jQuery code from Bootply.com editor  -->
+
+    <script type="text/javascript">
+
+$(document).ready(function() {
+
+  /* off-canvas sidebar toggle */
+
+  $('[data-toggle=offcanvas]').click(function() {
+    $(this).toggleClass('visible-xs text-center');
+    $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
+    $('.row-offcanvas').toggleClass('active');
+    $('#lg-menu').toggleClass('hidden-xs').toggleClass('visible-xs');
+    $('#xs-menu').toggleClass('visible-xs').toggleClass('hidden-xs');
+    $('#btnShow').toggle();
+  });
+
+});
+
+    </script>
+
+    <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-40413119-1', 'bootply.com');
+ga('send', 'pageview');
+    </script>
+
+
+  </body><div></div></html>
+
