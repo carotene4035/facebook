@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user
 
   def index
     @users = User.all
@@ -20,4 +21,9 @@ class ConversationsController < ApplicationController
   def conversation_params
     params.permit(:sender_id, :recipient_id)
   end
+
+  def set_user
+    @user = current_user
+  end
+
 end

@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_action do
     @conversation = Conversation.find(params[:conversation_id])
   end
+  before_action :set_user
 
   def index
     @messages = @conversation.messages
@@ -35,6 +36,10 @@ class MessagesController < ApplicationController
   private
   def message_params
     params.require(:message).permit(:body, :user_id)
+  end
+
+  def set_user
+    @user = current_user
   end
 
 end
