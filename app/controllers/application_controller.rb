@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # before_actionで下で定義したメソッドを実行
-  # 
+  #
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # 新規登録とアカウント更新の際に、パラメータにnameが入るようにする
@@ -17,5 +17,4 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: PERMISSIBLE_ATTRIBUTES)
       devise_parameter_sanitizer.permit(:account_update, keys: PERMISSIBLE_ATTRIBUTES)
     end
-
 end

@@ -30,11 +30,12 @@
 
                   <!-- main col left -->
                   <div class="col-sm-5">
-                    <%= render :partial => "common/profile" %>
+                    <%= render :partial => "common/profile", :locals => {user: @user}%>
                   </div>
 
                   <!-- main col right -->
                   <div class="col-sm-7">
+                    <!-- ここにメインコンテンツが入る -->
                     <%= yield %>
                   </div>
 

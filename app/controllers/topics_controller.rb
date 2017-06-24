@@ -2,6 +2,8 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
+  before_action :set_user
+
   # GET /topics
   # GET /topics.json
   def index
@@ -74,5 +76,9 @@ class TopicsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
       params.require(:topic).permit(:title, :content)
+    end
+
+    def set_user
+      @user = current_user
     end
 end
