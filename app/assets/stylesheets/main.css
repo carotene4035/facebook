@@ -284,3 +284,7 @@ small.text-muted {
     padding-left:3px;
   }
 }
+img.profile_img {
+  width: 50px;
+  height: 50px;
+}
