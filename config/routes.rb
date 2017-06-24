@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  root 'top#index'
+  root 'topics#index'
 
   resources :users, only: [:index, :show]
 
