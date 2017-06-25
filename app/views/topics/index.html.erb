@@ -9,7 +9,7 @@
 
 <% @topics.each do |topic| %>
 <div class="panel panel-default">
-  <div class="panel-heading"><a href="https://www.bootply.com/render/96266#" class="pull-right">View all</a> <h4><%= topic.title %></h4></div>
+  <div class="panel-heading"><a href="https://www.bootply.com/render/96266#" class="pull-right">View all</a> <h4><%= topic.title %> by <%= topic.user.name %></h4></div>
   <div class="panel-body">
     <p><%= topic.content %></p>
     <%= link_to "編集", edit_topic_path(topic.id), class: 'btn btn-primary btn-sm btn-success' %>
