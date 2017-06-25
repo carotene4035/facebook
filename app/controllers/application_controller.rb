@@ -7,8 +7,10 @@ class ApplicationController < ActionController::Base
   #
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  # before_actionで下で定義したメソッドを実行
+
   # 新規登録とアカウント更新の際に、パラメータにnameが入るようにする
-  PERMISSIBLE_ATTRIBUTES = %i(name, avatar_cache)
+  PERMISSIBLE_ATTRIBUTES = %i(name avatar avatar_cache)
 
   protected
 
