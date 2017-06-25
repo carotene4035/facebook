@@ -80,5 +80,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
 
+gem 'faker'
+
 gem 'dotenv-rails'
 gem 'unicorn'

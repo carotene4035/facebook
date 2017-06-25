@@ -5,3 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# userがまだ3人しか入っていないので、
+# user_idは1~3のランダムな値を入れてやる
+50.times do |n|
+  user_id = Random.rand(1..3)
+  title   = Faker::HarryPotter.quote
+  content = Faker::Lorem.paragraph
+
+  Topic.create!(
+    user_id: user_id,
+    title: title,
+    content: content
+  )
+end
